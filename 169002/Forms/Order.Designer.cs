@@ -33,10 +33,14 @@
             this.styleComboBox = new System.Windows.Forms.ComboBox();
             this.sizeComboBox = new System.Windows.Forms.ComboBox();
             this.quantityLabel = new System.Windows.Forms.Label();
-            this.qtyNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.priceLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.qtyNumericUpDown)).BeginInit();
+            this.priceDisabledTextBox = new System.Windows.Forms.TextBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.checkoutButton = new System.Windows.Forms.Button();
+            this.summaryLabel = new System.Windows.Forms.Label();
+            this.summaryTextBox = new System.Windows.Forms.TextBox();
+            this.qtyTextBox = new System.Windows.Forms.TextBox();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // styleLabel
@@ -46,7 +50,7 @@
             this.styleLabel.Location = new System.Drawing.Point(30, 27);
             this.styleLabel.Name = "styleLabel";
             this.styleLabel.Size = new System.Drawing.Size(158, 27);
-            this.styleLabel.TabIndex = 0;
+            this.styleLabel.TabIndex = 11;
             this.styleLabel.Text = "Choose style:";
             // 
             // sizeLabel
@@ -56,24 +60,42 @@
             this.sizeLabel.Location = new System.Drawing.Point(30, 87);
             this.sizeLabel.Name = "sizeLabel";
             this.sizeLabel.Size = new System.Drawing.Size(150, 27);
-            this.sizeLabel.TabIndex = 1;
+            this.sizeLabel.TabIndex = 10;
             this.sizeLabel.Text = "Choose size:";
             // 
             // styleComboBox
             // 
+            this.styleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.styleComboBox.FormattingEnabled = true;
+            this.styleComboBox.Items.AddRange(new object[] {
+            "Plain Black/White",
+            "Plain Colour",
+            "White w/Black Logo",
+            "Colour w/Black Logo ",
+            "Black w/Silver Logo",
+            "Colour w/Silver Logo"});
             this.styleComboBox.Location = new System.Drawing.Point(209, 27);
             this.styleComboBox.Name = "styleComboBox";
-            this.styleComboBox.Size = new System.Drawing.Size(158, 21);
-            this.styleComboBox.TabIndex = 2;
+            this.styleComboBox.Size = new System.Drawing.Size(215, 21);
+            this.styleComboBox.TabIndex = 0;
+            styleComboBox.SelectedIndex = 0;
+            this.styleComboBox.SelectedIndexChanged += new System.EventHandler(this.styleComboBox_SelectedIndexChanged);
             // 
             // sizeComboBox
             // 
+            this.sizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sizeComboBox.FormattingEnabled = true;
+            this.sizeComboBox.Items.AddRange(new object[] {
+            "S",
+            "M",
+            "L",
+            "XL"});
             this.sizeComboBox.Location = new System.Drawing.Point(209, 87);
             this.sizeComboBox.Name = "sizeComboBox";
-            this.sizeComboBox.Size = new System.Drawing.Size(158, 21);
-            this.sizeComboBox.TabIndex = 3;
+            this.sizeComboBox.Size = new System.Drawing.Size(215, 21);
+            this.sizeComboBox.TabIndex = 1;
+            sizeComboBox.SelectedIndex = 0;
+            this.sizeComboBox.SelectedIndexChanged += new System.EventHandler(this.sizeComboBox_SelectedIndexChanged);
             // 
             // quantityLabel
             // 
@@ -82,25 +104,8 @@
             this.quantityLabel.Location = new System.Drawing.Point(30, 209);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(160, 27);
-            this.quantityLabel.TabIndex = 4;
+            this.quantityLabel.TabIndex = 9;
             this.quantityLabel.Text = "Input quanity:";
-            // 
-            // qtyNumericUpDown
-            // 
-            this.qtyNumericUpDown.Location = new System.Drawing.Point(209, 209);
-            this.qtyNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.qtyNumericUpDown.Name = "qtyNumericUpDown";
-            this.qtyNumericUpDown.Size = new System.Drawing.Size(158, 20);
-            this.qtyNumericUpDown.TabIndex = 5;
-            this.qtyNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // priceLabel
             // 
@@ -109,26 +114,90 @@
             this.priceLabel.Location = new System.Drawing.Point(30, 151);
             this.priceLabel.Name = "priceLabel";
             this.priceLabel.Size = new System.Drawing.Size(73, 27);
-            this.priceLabel.TabIndex = 6;
+            this.priceLabel.TabIndex = 8;
             this.priceLabel.Text = "Price:";
             // 
-            // textBox1
+            // priceDisabledTextBox
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(209, 151);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(158, 20);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "111";
+            this.priceDisabledTextBox.Enabled = false;
+            this.priceDisabledTextBox.Location = new System.Drawing.Point(209, 151);
+            this.priceDisabledTextBox.Name = "priceDisabledTextBox";
+            this.priceDisabledTextBox.Size = new System.Drawing.Size(61, 20);
+            this.priceDisabledTextBox.TabIndex = 7;
+            // 
+            // clearButton
+            // 
+            this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.clearButton.Location = new System.Drawing.Point(127, 354);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(124, 46);
+            this.clearButton.TabIndex = 6;
+            this.clearButton.Text = "Clear!";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // checkoutButton
+            // 
+            this.checkoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkoutButton.Location = new System.Drawing.Point(300, 151);
+            this.checkoutButton.Name = "checkoutButton";
+            this.checkoutButton.Size = new System.Drawing.Size(124, 78);
+            this.checkoutButton.TabIndex = 5;
+            this.checkoutButton.Text = "Checkout!";
+            this.checkoutButton.UseVisualStyleBackColor = true;
+            this.checkoutButton.Click += new System.EventHandler(this.checkoutButton_Click);
+            // 
+            // summaryLabel
+            // 
+            this.summaryLabel.AutoSize = true;
+            this.summaryLabel.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.summaryLabel.Location = new System.Drawing.Point(95, 269);
+            this.summaryLabel.Name = "summaryLabel";
+            this.summaryLabel.Size = new System.Drawing.Size(122, 27);
+            this.summaryLabel.TabIndex = 4;
+            this.summaryLabel.Text = "Summary:";
+            // 
+            // summaryTextBox
+            // 
+            this.summaryTextBox.Enabled = false;
+            this.summaryTextBox.Location = new System.Drawing.Point(260, 269);
+            this.summaryTextBox.Name = "summaryTextBox";
+            this.summaryTextBox.Size = new System.Drawing.Size(90, 20);
+            this.summaryTextBox.TabIndex = 3;
+            // 
+            // qtyTextBox
+            // 
+            this.qtyTextBox.Location = new System.Drawing.Point(209, 209);
+            this.qtyTextBox.Name = "qtyTextBox";
+            this.qtyTextBox.Size = new System.Drawing.Size(61, 20);
+            this.qtyTextBox.TabIndex = 2;
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.exitButton.Location = new System.Drawing.Point(300, 354);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(124, 46);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.Text = "Exit";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(465, 441);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.qtyTextBox);
+            this.Controls.Add(this.summaryTextBox);
+            this.Controls.Add(this.summaryLabel);
+            this.Controls.Add(this.checkoutButton);
+            this.Controls.Add(this.clearButton);
+            this.Controls.Add(this.priceDisabledTextBox);
             this.Controls.Add(this.priceLabel);
-            this.Controls.Add(this.qtyNumericUpDown);
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.sizeComboBox);
             this.Controls.Add(this.styleComboBox);
@@ -136,7 +205,7 @@
             this.Controls.Add(this.styleLabel);
             this.Name = "Order";
             this.Text = "Order";
-            ((System.ComponentModel.ISupportInitialize)(this.qtyNumericUpDown)).EndInit();
+            this.Load += new System.EventHandler(this.Order_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,8 +218,13 @@
         private System.Windows.Forms.ComboBox styleComboBox;
         private System.Windows.Forms.ComboBox sizeComboBox;
         private System.Windows.Forms.Label quantityLabel;
-        private System.Windows.Forms.NumericUpDown qtyNumericUpDown;
         private System.Windows.Forms.Label priceLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox priceDisabledTextBox;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button checkoutButton;
+        private System.Windows.Forms.Label summaryLabel;
+        private System.Windows.Forms.TextBox summaryTextBox;
+        private System.Windows.Forms.TextBox qtyTextBox;
+        private System.Windows.Forms.Button exitButton;
     }
 }
