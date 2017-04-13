@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace _169002.Forms
 {
-    public partial class Order : Form 
+    public partial class frmOrder : Form 
     {
         const int DEFAULTSIZE = 0;
         const int DEFAULTSTYLE = 0;
@@ -17,8 +17,8 @@ namespace _169002.Forms
         //when application start the method load prices from input text file
         private decimal[,] LoadPrices()
         {
-            int rows = styleComboBox.Items.Count;
-            int columns = sizeComboBox.Items.Count;
+            int rows = cbStyle.Items.Count;
+            int columns = cbSize.Items.Count;
             decimal[,] prices = new decimal[rows, columns];
 
             using (StreamReader sr = new StreamReader(
@@ -42,18 +42,18 @@ namespace _169002.Forms
         //when user click "clear" button
         private void SetDefaultParameters()
         {
-            this.sizeComboBox.SelectedIndex = DEFAULTSIZE;
-            this.styleComboBox.SelectedIndex = DEFAULTSTYLE;
-            this.qtyTextBox.Text = "";
-            this.priceDisabledTextBox.Text = prices[DEFAULTSIZE, DEFAULTSTYLE].ToString();
-            this.summaryTextBox.Text = "";
+            this.cbSize.SelectedIndex = DEFAULTSIZE;
+            this.cbStyle.SelectedIndex = DEFAULTSTYLE;
+            this.txtQty.Text = "";
+            this.lblPrice.Text = String.Format("{0:C2}", prices[DEFAULTSIZE, DEFAULTSTYLE]);
+            this.lblSummary.Text = "";
         }
 
         //validation of user input quantity
         private bool QtyValidation()
         {
             int qty;
-            if (int.TryParse(qtyTextBox.Text, out qty) && qty > 0)
+            if (int.TryParse(txtQty.Text, out qty) && qty > 0)
                 return true;
             return false;
         }

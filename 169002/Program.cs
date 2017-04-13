@@ -17,7 +17,7 @@ namespace _169002
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Order());
+            Application.Run(new frmOrder());
         }
     }
 }
